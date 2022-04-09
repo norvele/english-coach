@@ -19,7 +19,7 @@ const signs = {
     question:  'question',
 }
 
-function getRandomElement(array) {
+function getRandomFromArray(array) {
     const index = Math.floor(Math.random() * array.length)
     return array[index]
 }
@@ -28,10 +28,10 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function getQuestion() {
-    const pronoun = getRandomElement(Object.values(pronouns))
-    const tense = getRandomElement(Object.values(tenses))
-    const sign = getRandomElement(Object.values(signs))
+function getTask() {
+    const pronoun = getRandomFromArray(Object.values(pronouns))
+    const tense = getRandomFromArray(Object.values(tenses))
+    const sign = getRandomFromArray(Object.values(signs))
     return {
         pronoun,
         tense,
@@ -39,14 +39,14 @@ function getQuestion() {
     }
 }
 
-function getReply(question) {
+function getSolution(task) {
     const tensesMap = {
-        [tenses.presentSimple]: getPresentSimpleReply,
-        [tenses.presetContinuous]: getPresentContinuousReply,
-        [tenses.futureSimple]: getFutureSimpleReply,
-        [tenses.pastSimple]: getPastSimpleReply,
+        [tenses.presentSimple]: getPresentSimpleSolution,
+        [tenses.presetContinuous]: getPresentContinuousSolution,
+        [tenses.futureSimple]: getFutureSimpleSolution,
+        [tenses.pastSimple]: getPastSimpleSolution,
     }
-    const result = tensesMap[question.tense](question)
+    const result = tensesMap[task.tense](task)
     return capitalize(result)
 }
 
@@ -55,29 +55,29 @@ function getReply(question) {
     - i don't work, you don't work, he doesn't work
     ? do i work?, do you work?, does he work?
  */
-function getPresentSimpleReply(question) {
+function getPresentSimpleSolution(task) {
     const result = []
-    if (question.sign === signs.positive) {
-        result.push(question.pronoun)
-        if ([pronouns.he, pronouns.she, pronouns.it].includes(question.pronoun)) {
+    if (task.sign === signs.positive) {
+        result.push(task.pronoun)
+        if ([pronouns.he, pronouns.she, pronouns.it].includes(task.pronoun)) {
             result.push('works')
         } else {
             result.push('work')
         }
-    } else if (question.sign === signs.negative) {
-        result.push(question.pronoun)
-        if ([pronouns.he, pronouns.she, pronouns.it].includes(question.pronoun)) {
+    } else if (task.sign === signs.negative) {
+        result.push(task.pronoun)
+        if ([pronouns.he, pronouns.she, pronouns.it].includes(task.pronoun)) {
             result.push('does not work')
         } else {
             result.push('do not work')
         }
     } else {
-        if ([pronouns.he, pronouns.she, pronouns.it].includes(question.pronoun)) {
+        if ([pronouns.he, pronouns.she, pronouns.it].includes(task.pronoun)) {
             result.push('Does')
         } else {
             result.push('Do')
         }
-        result.push(question.pronoun)
+        result.push(task.pronoun)
         result.push('work?')
     }
     return result.join(' ')
@@ -88,19 +88,19 @@ function getPresentSimpleReply(question) {
     - i am not working, you aren't working, he isn't working
     ? am i working?, are you working?, is he working?
  */
-function getPresentContinuousReply(question) {
+function getPresentContinuousSolution(task) {
     const result = []
     let aux = 'am'
-    if ([pronouns.you, pronouns.we, pronouns.they].includes(question.pronoun)) {
+    if ([pronouns.you, pronouns.we, pronouns.they].includes(task.pronoun)) {
         aux = 'are'
-    } else if ([pronouns.he, pronouns.she, pronouns.it].includes(question.pronoun)) {
+    } else if ([pronouns.he, pronouns.she, pronouns.it].includes(task.pronoun)) {
         aux = 'is'
     }
-    if (question.sign === signs.question) {
-        result.push(aux, question.pronoun, 'working?')
+    if (task.sign === signs.question) {
+        result.push(aux, task.pronoun, 'working?')
     } else {
-        result.push(question.pronoun, aux)
-        if (question.sign === signs.negative) {
+        result.push(task.pronoun, aux)
+        if (task.sign === signs.negative) {
             result.push('not')
         }
         result.push('working')
@@ -113,13 +113,13 @@ function getPresentContinuousReply(question) {
     - i will not work, you will not work, he will not work
     ? will i work?, will you work?, will he work?
  */
-function getFutureSimpleReply(question) {
+function getFutureSimpleSolution(task) {
     const result = []
-    if (question.sign === signs.question) {
-        result.push('will', question.pronoun, 'work?')
+    if (task.sign === signs.question) {
+        result.push('will', task.pronoun, 'work?')
     } else {
-        result.push(question.pronoun, 'will')
-        if (question.sign === signs.negative) {
+        result.push(task.pronoun, 'will')
+        if (task.sign === signs.negative) {
             result.push('not')
         }
         result.push('work')
@@ -132,57 +132,57 @@ function getFutureSimpleReply(question) {
     - i didn't work, you didn't work, he didn't work
     ? did i work?, did you work?, did he work?
  */
-function getPastSimpleReply(question) {
+function getPastSimpleSolution(task) {
     const result = []
-    if (question.sign === signs.positive) {
-        result.push(question.pronoun, 'worked')
-    } else if (question.sign === signs.negative) {
-        result.push(question.pronoun, 'did not work')
+    if (task.sign === signs.positive) {
+        result.push(task.pronoun, 'worked')
+    } else if (task.sign === signs.negative) {
+        result.push(task.pronoun, 'did not work')
     } else {
-        result.push('did', question.pronoun, 'work?')
+        result.push('did', task.pronoun, 'work?')
     }
     return result.join(' ')
 }
 
 class Game {
-    currentQuestion
-    currentStep // question or answer
+    currentTask
+    currentStep // task or solution
 
     start() {
-        this.popQuestion()
+        this.suggestTask()
     }
 
     nextStep() {
-        if (this.currentStep === 'answer') {
-            this.popQuestion()
+        if (this.currentStep === 'solution') {
+            this.suggestTask()
         } else {
-            this.reply()
+            this.suggestSolution()
         }
     }
 
-    popQuestion() {
-        this.currentStep = 'question'
-        this.currentQuestion = getQuestion()
-        this.logQuestion(this.currentQuestion)
+    suggestTask() {
+        this.currentStep = 'task'
+        this.currentTask = getTask()
+        this.logTask(this.currentTask)
     }
 
-    reply() {
-        this.currentStep = 'answer'
-        this.logReply(getReply(this.currentQuestion))
+    suggestSolution() {
+        this.currentStep = 'solution'
+        this.logSolution(getSolution(this.currentTask))
     }
 
-    logQuestion(question) {
+    logTask(task) {
         console.clear()
-        console.log(`[${question.tense}] [${question.sign}] ${question.pronoun} work`)
+        console.log(`[${task.tense}] [${task.sign}] ${task.pronoun} work`)
     }
 
-    logReply(reply) {
-        console.log(reply)
+    logSolution(solution) {
+        console.log(solution)
     }
 }
 
 module.exports = {
-    getReply,
+    getSolution,
     Game,
     pronouns,
     tenses,
