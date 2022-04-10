@@ -1,10 +1,12 @@
-const { Game } = require('./game')
+const { Game } = require('./Game')
+const { TaskBuilder } = require('./TaskBuilder')
 
 const stdin = process.stdin;
 stdin.resume();
 stdin.setEncoding( 'utf8' );
 
-const game = new Game()
+const taskBuilder = new TaskBuilder()
+const game = new Game(taskBuilder)
 game.start()
 
 stdin.on( 'data', (key) => {

@@ -1,4 +1,4 @@
-const { getSolution, pronouns, tenses, signs } = require('./game')
+const { getSolution, pronouns, tenses, signs } = require('./Game')
 
 const testCases = [
     // presentSimple

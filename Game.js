@@ -1,43 +1,5 @@
-const pronouns = {
-    i: 'i',
-    you: 'you',
-    we: 'we',
-    they: 'they',
-    he: 'he',
-    she: 'she',
-    it: 'it',
-}
-const tenses = {
-    presentSimple: 'Present Simple',
-    presetContinuous: 'Present Continuous',
-    futureSimple: 'Future Simple',
-    pastSimple: 'Past Simple',
-}
-const signs = {
-    positive:  'positive',
-    negative:  'negative',
-    question:  'question',
-}
-
-function getRandomFromArray(array) {
-    const index = Math.floor(Math.random() * array.length)
-    return array[index]
-}
-
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function getTask() {
-    const pronoun = getRandomFromArray(Object.values(pronouns))
-    const tense = getRandomFromArray(Object.values(tenses))
-    const sign = getRandomFromArray(Object.values(signs))
-    return {
-        pronoun,
-        tense,
-        sign,
-    }
-}
+const { pronouns, tenses, signs } = require('./Task')
+const { capitalize } = require('./utils/capitalize')
 
 function getSolution(task) {
     const tensesMap = {
@@ -147,6 +109,11 @@ function getPastSimpleSolution(task) {
 class Game {
     currentTask
     currentStep // task or solution
+    #taskBuilder
+
+    constructor(taskBuilder) {
+        this.#taskBuilder = taskBuilder
+    }
 
     start() {
         this.suggestTask()
@@ -162,7 +129,7 @@ class Game {
 
     suggestTask() {
         this.currentStep = 'task'
-        this.currentTask = getTask()
+        this.currentTask = this.#taskBuilder.createRandomTask()
         this.logTask(this.currentTask)
     }
 
