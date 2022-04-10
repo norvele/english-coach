@@ -6,7 +6,7 @@ class TaskBuilder {
         const pronoun = getRandomFromArray(Object.values(pronouns))
         const tense = getRandomFromArray(Object.values(tenses))
         const sign = getRandomFromArray(Object.values(signs))
-        return new Task(pronoun, tense, sign)
+        return new Task(tense, pronoun, sign)
     }
 }
 

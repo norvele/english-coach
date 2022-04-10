@@ -1,303 +1,161 @@
-const { getSolution, pronouns, tenses, signs } = require('./Game')
+const { pronouns, tenses, signs, Task } = require('./Task')
+const { English } = require('./languages/English')
 
 const testCases = [
     // presentSimple
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.i,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.presentSimple, pronouns.i, signs.positive),
         solution: 'I work'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.i,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.presentSimple, pronouns.i, signs.negative),
         solution: 'I do not work'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.i,
-            sign: signs.question,
-        },
+        task: new Task(tenses.presentSimple, pronouns.i, signs.question),
         solution: 'Do i work?'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.you,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.presentSimple, pronouns.you, signs.positive),
         solution: 'You work'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.you,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.presentSimple, pronouns.you, signs.negative),
         solution: 'You do not work'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.you,
-            sign: signs.question,
-        },
+        task: new Task(tenses.presentSimple, pronouns.you, signs.question),
         solution: 'Do you work?'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.he,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.presentSimple, pronouns.he, signs.positive),
         solution: 'He works'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.he,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.presentSimple, pronouns.he, signs.negative),
         solution: 'He does not work'
     },
     {
-        task: {
-            tense: tenses.presentSimple,
-            pronoun: pronouns.he,
-            sign: signs.question,
-        },
+        task: new Task(tenses.presentSimple, pronouns.he, signs.question),
         solution: 'Does he work?'
     },
     // presentContinuous
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.i,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.i, signs.positive),
         solution: 'I am working'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.i,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.i, signs.negative),
         solution: 'I am not working'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.i,
-            sign: signs.question,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.i, signs.question),
         solution: 'Am i working?'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.you,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.you, signs.positive),
         solution: 'You are working'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.you,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.you, signs.negative),
         solution: 'You are not working'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.you,
-            sign: signs.question,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.you, signs.question),
         solution: 'Are you working?'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.he,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.he, signs.positive),
         solution: 'He is working'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.he,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.he, signs.negative),
         solution: 'He is not working'
     },
     {
-        task: {
-            tense: tenses.presetContinuous,
-            pronoun: pronouns.he,
-            sign: signs.question,
-        },
+        task: new Task(tenses.presetContinuous, pronouns.he, signs.question),
         solution: 'Is he working?'
     },
     // futureSimple
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.i,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.futureSimple, pronouns.i, signs.positive),
         solution: 'I will work'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.i,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.futureSimple, pronouns.i, signs.negative),
         solution: 'I will not work'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.i,
-            sign: signs.question,
-        },
+        task: new Task(tenses.futureSimple, pronouns.i, signs.question),
         solution: 'Will i work?'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.you,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.futureSimple, pronouns.you, signs.positive),
         solution: 'You will work'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.you,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.futureSimple, pronouns.you, signs.negative),
         solution: 'You will not work'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.you,
-            sign: signs.question,
-        },
+        task: new Task(tenses.futureSimple, pronouns.you, signs.question),
         solution: 'Will you work?'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.he,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.futureSimple, pronouns.he, signs.positive),
         solution: 'He will work'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.he,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.futureSimple, pronouns.he, signs.negative),
         solution: 'He will not work'
     },
     {
-        task: {
-            tense: tenses.futureSimple,
-            pronoun: pronouns.he,
-            sign: signs.question,
-        },
+        task: new Task(tenses.futureSimple, pronouns.he, signs.question),
         solution: 'Will he work?'
     },
     // pastSimple
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.i,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.pastSimple, pronouns.i, signs.positive),
         solution: 'I worked'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.i,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.pastSimple, pronouns.i, signs.negative),
         solution: 'I did not work'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.i,
-            sign: signs.question,
-        },
+        task: new Task(tenses.pastSimple, pronouns.i, signs.question),
         solution: 'Did i work?'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.you,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.pastSimple, pronouns.you, signs.positive),
         solution: 'You worked'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.you,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.pastSimple, pronouns.you, signs.negative),
         solution: 'You did not work'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.you,
-            sign: signs.question,
-        },
+        task: new Task(tenses.pastSimple, pronouns.you, signs.question),
         solution: 'Did you work?'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.he,
-            sign: signs.positive,
-        },
+        task: new Task(tenses.pastSimple, pronouns.he, signs.positive),
         solution: 'He worked'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.he,
-            sign: signs.negative,
-        },
+        task: new Task(tenses.pastSimple, pronouns.he, signs.negative),
         solution: 'He did not work'
     },
     {
-        task: {
-            tense: tenses.pastSimple,
-            pronoun: pronouns.he,
-            sign: signs.question,
-        },
+        task: new Task(tenses.pastSimple, pronouns.he, signs.question),
         solution: 'Did he work?'
     },
 ]
 
 let errorsCount = 0
 testCases.forEach(({ task, solution }) => {
-    const result = getSolution(task)
+    const english = new English()
+    const result = english.getSolution(task)
     if (result !== solution) {
         errorsCount++
         console.error('Test failed for: ', task, `Result: "${result}"`)

@@ -20,12 +20,13 @@ const signs = {
 }
 
 class Task {
-    pronoun;
     tense;
+    pronoun;
     sign;
-    constructor(pronoun, tense, sign) {
-        this.pronoun = pronoun;
+
+    constructor(tense, pronoun, sign) {
         this.tense = tense;
+        this.pronoun = pronoun;
         this.sign = sign;
     }
 }
