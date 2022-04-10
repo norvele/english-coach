@@ -109,9 +109,11 @@ function getPastSimpleSolution(task) {
 class Game {
     currentTask
     currentStep // task or solution
+    #view
     #taskBuilder
 
-    constructor(taskBuilder) {
+    constructor(view, taskBuilder) {
+        this.#view = view
         this.#taskBuilder = taskBuilder
     }
 
@@ -130,21 +132,12 @@ class Game {
     suggestTask() {
         this.currentStep = 'task'
         this.currentTask = this.#taskBuilder.createRandomTask()
-        this.logTask(this.currentTask)
+        this.#view.printTask(this.currentTask)
     }
 
     suggestSolution() {
         this.currentStep = 'solution'
-        this.logSolution(getSolution(this.currentTask))
-    }
-
-    logTask(task) {
-        console.clear()
-        console.log(`[${task.tense}] [${task.sign}] ${task.pronoun} work`)
-    }
-
-    logSolution(solution) {
-        console.log(solution)
+        this.#view.printSolution(getSolution(this.currentTask))
     }
 }
 
