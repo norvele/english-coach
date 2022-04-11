@@ -12,7 +12,7 @@ class English {
         const result = tensesMap[task.tense](task)
         return capitalize(result)
     }
-    
+
     #getPresentSimpleSolution(task) {
         const result = []
         if (task.sign === signs.positive) {
