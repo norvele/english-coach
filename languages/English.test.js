@@ -1,5 +1,5 @@
-const { pronouns, tenses, signs, Task } = require('./Task')
-const { English } = require('./languages/English')
+const { pronouns, tenses, signs, Task } = require('../Task')
+const { English } = require('./English')
 
 const testCases = [
     // presentSimple
@@ -152,19 +152,12 @@ const testCases = [
     },
 ]
 
-let errorsCount = 0
-testCases.forEach(({ task, solution }) => {
-    const english = new English()
-    const result = english.getSolution(task)
-    if (result !== solution) {
-        errorsCount++
-        console.error('Test failed for: ', task, `Result: "${result}"`)
-    }
+describe('English language', () => {
+    testCases.forEach(({ task, solution }) => {
+        test(`${task}`, () => {
+            const english = new English()
+            const result = english.getSolution(task)
+            expect(result).toEqual(solution)
+        })
+    })
 })
-
-if (errorsCount) {
-    process.exit(1)
-} else {
-    console.log('Tests passed')
-    process.exit(0)
-}

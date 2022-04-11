@@ -29,6 +29,10 @@ class Task {
         this.pronoun = pronoun;
         this.sign = sign;
     }
+
+    toString() {
+        return `${this.tense} | ${this.pronoun} ${this.sign}`
+    }
 }
 
 module.exports = {
