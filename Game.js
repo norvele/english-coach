@@ -3,12 +3,14 @@ class Game {
     currentStep // task or solution
     #view
     #taskBuilder
-    #english
+    #taskLanguage
+    #solutionLanguage
 
-    constructor(view, taskBuilder, english) {
+    constructor(view, taskBuilder, taskLanguage, solutionLanguage) {
         this.#view = view
         this.#taskBuilder = taskBuilder
-        this.#english = english
+        this.#taskLanguage = taskLanguage
+        this.#solutionLanguage = solutionLanguage
     }
 
     start() {
@@ -26,13 +28,14 @@ class Game {
     suggestTask() {
         this.currentStep = 'task'
         this.currentTask = this.#taskBuilder.createRandomTask()
-        this.#view.printTask(this.currentTask)
+        const text = this.#taskLanguage.getSolution(this.currentTask)
+        this.#view.printTask(text)
     }
 
     suggestSolution() {
         this.currentStep = 'solution'
-        const solution = this.#english.getSolution(this.currentTask)
-        this.#view.printSolution(solution)
+        const text = this.#solutionLanguage.getSolution(this.currentTask)
+        this.#view.printSolution(text)
     }
 }
 

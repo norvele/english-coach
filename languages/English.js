@@ -4,20 +4,15 @@ const { capitalize } = require("../utils/capitalize");
 class English {
     getSolution(task) {
         const tensesMap = {
-            [tenses.presentSimple]: this.#getPresentSimpleSolution,
-            [tenses.presetContinuous]: this.#getPresentContinuousSolution,
-            [tenses.futureSimple]: this.#getFutureSimpleSolution,
-            [tenses.pastSimple]: this.#getPastSimpleSolution,
+            [tenses.presentSimple]: this.#getPresentSimpleSolution.bind(this),
+            [tenses.presetContinuous]: this.#getPresentContinuousSolution.bind(this),
+            [tenses.futureSimple]: this.#getFutureSimpleSolution.bind(this),
+            [tenses.pastSimple]: this.#getPastSimpleSolution.bind(this),
         }
         const result = tensesMap[task.tense](task)
         return capitalize(result)
     }
-
-    /**
-     * + i work, you work, he works
-     * - i don't work, you don't work, he doesn't work
-     * ? do i work?, do you work?, does he work?
-     */
+    
     #getPresentSimpleSolution(task) {
         const result = []
         if (task.sign === signs.positive) {
@@ -46,11 +41,6 @@ class English {
         return result.join(' ')
     }
 
-    /**
-     * + i am working, you are working, he is working
-     * - i am not working, you aren't working, he isn't working
-     * ? am i working?, are you working?, is he working?
-     */
     #getPresentContinuousSolution(task) {
         const result = []
         let aux = 'am'
@@ -71,11 +61,6 @@ class English {
         return result.join(' ')
     }
 
-    /**
-     * + i will work, you will work, he will work
-     * - i will not work, you will not work, he will not work
-     * ? will i work?, will you work?, will he work?
-     */
     #getFutureSimpleSolution(task) {
         const result = []
         if (task.sign === signs.question) {
@@ -90,11 +75,6 @@ class English {
         return result.join(' ')
     }
 
-    /**
-     * + i worked, you worked, he worked
-     * - i didn't work, you didn't work, he didn't work
-     * ? did i work?, did you work?, did he work?
-     */
     #getPastSimpleSolution(task) {
         const result = []
         if (task.sign === signs.positive) {

@@ -1,10 +1,10 @@
 class View {
-    printTask(task) {
+    printTask(text) {
         console.clear()
-        console.log(`[${task.tense}] [${task.sign}] ${task.pronoun} work`)
+        console.log(text)
     }
-    printSolution(solution) {
-        console.log(solution)
+    printSolution(text) {
+        console.log(text)
     }
 }
 
