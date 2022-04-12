@@ -1,4 +1,4 @@
-const { pronouns, tenses, signs, Task } = require('./Task')
+const { pronouns, tenses, signs, verbs, Task } = require('./Task')
 const { getRandomFromArray } = require('./utils/getRandomFromArray')
 
 class TaskBuilder {
@@ -6,7 +6,8 @@ class TaskBuilder {
         const pronoun = getRandomFromArray(Object.values(pronouns))
         const tense = getRandomFromArray(Object.values(tenses))
         const sign = getRandomFromArray(Object.values(signs))
-        return new Task(tense, pronoun, sign)
+        const verb = getRandomFromArray(Object.values(verbs))
+        return new Task({ tense, pronoun, sign, verb })
     }
 }
 

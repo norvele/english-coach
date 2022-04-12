@@ -1,153 +1,153 @@
-const { pronouns, tenses, signs, Task } = require('../Task')
+const { pronouns, tenses, signs, verbs, Task } = require('../Task')
 const { Russian } = require('./Russian')
 
 const testCases = [
     // presentSimple
     {
-        task: new Task(tenses.presentSimple, pronouns.i, signs.positive),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.i, sign: signs.positive, verb: verbs.work }),
         solution: 'Я работаю'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.i, signs.negative),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
         solution: 'Я не работаю'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.i, signs.question),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
         solution: 'Я работаю?'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.you, signs.positive),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.you, sign: signs.positive, verb: verbs.work }),
         solution: 'Ты работаешь'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.you, signs.negative),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
         solution: 'Ты не работаешь'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.you, signs.question),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
         solution: 'Ты работаешь?'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.he, signs.positive),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.positive, verb: verbs.work }),
         solution: 'Он работает'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.he, signs.negative),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
         solution: 'Он не работает'
     },
     {
-        task: new Task(tenses.presentSimple, pronouns.he, signs.question),
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
         solution: 'Он работает?'
     },
     // presentContinuous
     {
-        task: new Task(tenses.presetContinuous, pronouns.i, signs.positive),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.i, sign: signs.positive, verb: verbs.work }),
         solution: 'Я сейчас работаю'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.i, signs.negative),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
         solution: 'Я сейчас не работаю'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.i, signs.question),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
         solution: 'Я сейчас работаю?'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.you, signs.positive),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.you, sign: signs.positive, verb: verbs.work }),
         solution: 'Ты сейчас работаешь'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.you, signs.negative),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
         solution: 'Ты сейчас не работаешь'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.you, signs.question),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
         solution: 'Ты сейчас работаешь?'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.he, signs.positive),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.he, sign: signs.positive, verb: verbs.work }),
         solution: 'Он сейчас работает'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.he, signs.negative),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
         solution: 'Он сейчас не работает'
     },
     {
-        task: new Task(tenses.presetContinuous, pronouns.he, signs.question),
+        task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
         solution: 'Он сейчас работает?'
     },
     // futureSimple
     {
-        task: new Task(tenses.futureSimple, pronouns.i, signs.positive),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.i, sign: signs.positive, verb: verbs.work }),
         solution: 'Я буду работать'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.i, signs.negative),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
         solution: 'Я не буду работать'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.i, signs.question),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
         solution: 'Я буду работать?'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.you, signs.positive),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.you, sign: signs.positive, verb: verbs.work }),
         solution: 'Ты будешь работать'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.you, signs.negative),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
         solution: 'Ты не будешь работать'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.you, signs.question),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
         solution: 'Ты будешь работать?'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.he, signs.positive),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.he, sign: signs.positive, verb: verbs.work }),
         solution: 'Он будет работать'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.he, signs.negative),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
         solution: 'Он не будет работать'
     },
     {
-        task: new Task(tenses.futureSimple, pronouns.he, signs.question),
+        task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
         solution: 'Он будет работать?'
     },
     // pastSimple
     {
-        task: new Task(tenses.pastSimple, pronouns.i, signs.positive),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.i, sign: signs.positive, verb: verbs.work }),
         solution: 'Я работал'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.i, signs.negative),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
         solution: 'Я не работал'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.i, signs.question),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
         solution: 'Я работал?'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.you, signs.positive),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.you, sign: signs.positive, verb: verbs.work }),
         solution: 'Ты работал'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.you, signs.negative),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
         solution: 'Ты не работал'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.you, signs.question),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
         solution: 'Ты работал?'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.he, signs.positive),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.he, sign: signs.positive, verb: verbs.work }),
         solution: 'Он работал'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.he, signs.negative),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
         solution: 'Он не работал'
     },
     {
-        task: new Task(tenses.pastSimple, pronouns.he, signs.question),
+        task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
         solution: 'Он работал?'
     },
 ]

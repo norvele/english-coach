@@ -19,19 +19,27 @@ const signs = {
     question:  'question',
 }
 
+const verbs = {
+    work: 'work',
+    study: 'study',
+    go: 'go'
+}
+
 class Task {
     tense;
     pronoun;
     sign;
+    verb;
 
-    constructor(tense, pronoun, sign) {
+    constructor({ tense, pronoun, sign, verb }) {
         this.tense = tense;
         this.pronoun = pronoun;
         this.sign = sign;
+        this.verb = verb;
     }
 
     toString() {
-        return `${this.tense} | ${this.pronoun} ${this.sign}`
+        return `${this.tense} | ${this.pronoun} ${this.sign} ${this.verb}`
     }
 }
 
@@ -39,5 +47,6 @@ module.exports = {
     pronouns,
     tenses,
     signs,
+    verbs,
     Task
 }

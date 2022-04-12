@@ -1,4 +1,4 @@
-const { tenses, signs} = require("../Task");
+const { tenses, signs, verbs} = require("../Task");
 const { capitalize } = require("../utils/capitalize");
 
 const pronounsMap = {
@@ -9,6 +9,72 @@ const pronounsMap = {
     he: 'он',
     she: 'она',
     it: 'это',
+}
+
+const verbsMap = {
+    work: {
+        present: {
+            i: 'работаю',
+            you: 'работаешь',
+            we: 'работаем',
+            they: 'работают',
+            he: 'работает',
+            she: 'работает',
+            it: 'работает',
+        },
+        past: {
+            i: 'работал',
+            you: 'работал',
+            we: 'работали',
+            they: 'работали',
+            he: 'работал',
+            she: 'работала',
+            it: 'работало',
+        },
+        future: 'работать'
+    },
+    study: {
+        present: {
+            i: 'обучаюсь',
+            you: 'обучаешься',
+            we: 'обучаемся',
+            they: 'обучаются',
+            he: 'обучается',
+            she: 'обучается',
+            it: 'обучается',
+        },
+        past: {
+            i: 'обучался',
+            you: 'обучался',
+            we: 'обучались',
+            they: 'обучались',
+            he: 'обучался',
+            she: 'обучалась',
+            it: 'обучалось',
+        },
+        future: 'обучаться'
+    },
+    go: {
+        present: {
+            i: 'иду',
+            you: 'идешь',
+            we: 'идем',
+            they: 'идут',
+            he: 'идет',
+            she: 'идет',
+            it: 'идет',
+        },
+        past: {
+            i: 'шел',
+            you: 'шел',
+            we: 'шли',
+            they: 'шли',
+            he: 'шел',
+            she: 'шла',
+            it: 'шло',
+        },
+        future: 'идти'
+    }
 }
 
 class Russian {
@@ -24,15 +90,6 @@ class Russian {
     }
 
     #getPresentSimpleSolution(task, now = false) {
-        const verbMap = {
-            i: 'работаю',
-            you: 'работаешь',
-            we: 'работаем',
-            they: 'работают',
-            he: 'работает',
-            she: 'работает',
-            it: 'работает',
-        }
         const acc = [pronounsMap[task.pronoun]]
         if (now) {
             acc.push('сейчас')
@@ -40,7 +97,7 @@ class Russian {
         if (task.sign === signs.negative) {
             acc.push('не')
         }
-        acc.push(verbMap[task.pronoun])
+        acc.push(verbsMap[task.verb]['present'][task.pronoun])
         const result = acc.join(' ')
         return (task.sign === signs.question) ? `${result}?` : result
     }
@@ -50,39 +107,30 @@ class Russian {
     }
 
     #getFutureSimpleSolution(task) {
-        const verbMap = {
-            i: 'буду работать',
-            you: 'будешь работать',
-            we: 'будем работать',
-            they: 'будут работать',
-            he: 'будет работать',
-            she: 'будет работать',
-            it: 'будет работать',
+        const beMap = {
+            i: 'буду',
+            you: 'будешь',
+            we: 'будем',
+            they: 'будут',
+            he: 'будет',
+            she: 'будет',
+            it: 'будет',
         }
         const acc = [pronounsMap[task.pronoun]]
         if (task.sign === signs.negative) {
             acc.push('не')
         }
-        acc.push(verbMap[task.pronoun])
+        acc.push(beMap[task.pronoun], verbsMap[task.verb]['future'])
         const result = acc.join(' ')
         return (task.sign === signs.question) ? `${result}?` : result
     }
 
     #getPastSimpleSolution(task) {
-        const verbMap = {
-            i: 'работал',
-            you: 'работал',
-            we: 'работали',
-            they: 'работали',
-            he: 'работал',
-            she: 'работала',
-            it: 'работало',
-        }
         const acc = [pronounsMap[task.pronoun]]
         if (task.sign === signs.negative) {
             acc.push('не')
         }
-        acc.push(verbMap[task.pronoun])
+        acc.push(verbsMap[task.verb]['past'][task.pronoun])
         const result = acc.join(' ')
         return (task.sign === signs.question) ? `${result}?` : result
     }
