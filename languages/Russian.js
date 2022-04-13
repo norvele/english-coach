@@ -31,7 +31,15 @@ const verbsMap = {
             she: 'работала',
             it: 'работало',
         },
-        future: 'работать'
+        future: {
+            i: 'буду работать',
+            you: 'будешь работать',
+            we: 'будем работать',
+            they: 'будут работать',
+            he: 'будет работать',
+            she: 'будет работать',
+            it: 'будет работать',
+        }
     },
     study: {
         present: {
@@ -52,7 +60,15 @@ const verbsMap = {
             she: 'обучалась',
             it: 'обучалось',
         },
-        future: 'обучаться'
+        future: {
+            i: 'буду обучаться',
+            you: 'будешь обучаться',
+            we: 'будем обучаться',
+            they: 'будут обучаться',
+            he: 'будет обучаться',
+            she: 'будет обучаться',
+            it: 'будет обучаться',
+        }
     },
     go: {
         present: {
@@ -73,7 +89,15 @@ const verbsMap = {
             she: 'шла',
             it: 'шло',
         },
-        future: 'идти'
+        future: {
+            i: 'пойду',
+            you: 'пойдешь',
+            we: 'пошли',
+            they: 'пошли',
+            he: 'пошел',
+            she: 'пошла',
+            it: 'пошло',
+        }
     }
 }
 
@@ -107,20 +131,11 @@ class Russian {
     }
 
     #getFutureSimpleSolution(task) {
-        const beMap = {
-            i: 'буду',
-            you: 'будешь',
-            we: 'будем',
-            they: 'будут',
-            he: 'будет',
-            she: 'будет',
-            it: 'будет',
-        }
         const acc = [pronounsMap[task.pronoun]]
         if (task.sign === signs.negative) {
             acc.push('не')
         }
-        acc.push(beMap[task.pronoun], verbsMap[task.verb]['future'])
+        acc.push(verbsMap[task.verb]['future'][task.pronoun])
         const result = acc.join(' ')
         return (task.sign === signs.question) ? `${result}?` : result
     }
