@@ -99,6 +99,9 @@ class English {
             const body = verb.substring(0, verb.length - 1)
             return `${body}ies`
         }
+        if (endChar === 'o') {
+            return `${verb}es`
+        }
         return `${verb}s`
     }
 

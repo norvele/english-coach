@@ -32,6 +32,10 @@ const testCases = [
         solution: 'He works'
     },
     {
+        task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.positive, verb: verbs.go }),
+        solution: 'He goes'
+    },
+    {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
         solution: 'He does not work'
     },
