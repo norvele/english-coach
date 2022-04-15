@@ -39,7 +39,7 @@ class Task {
     }
 
     toString() {
-        return `${this.tense} | ${this.pronoun} ${this.sign} ${this.verb}`
+        return `${this.tense} | ${this.pronoun} | ${this.sign} | ${this.verb}`
     }
 }
 

@@ -14,7 +14,7 @@ class English {
             [tenses.pastSimple]: this.#getPastSimpleSolution.bind(this),
         }
         const result = tensesMap[task.tense](task)
-        return capitalize(result)
+        return capitalize(this.#minimize(result))
     }
 
     #getPresentSimpleSolution(task) {
@@ -120,6 +120,22 @@ class English {
             return `${body}ied`
         }
         return `${verb}ed`
+    }
+
+    #minimize(text) {
+        const map = {
+            'do not': "don't",
+            'does not': "doesn't",
+            'are not': "aren't",
+            'is not': "isn't",
+            'did not': "didn't",
+            'will not': "won't"
+        }
+        let newText = text
+        Object.entries(map).forEach(([search, replacer]) => {
+            newText = newText.replace(search, replacer)
+        })
+        return newText
     }
 }
 

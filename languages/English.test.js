@@ -9,7 +9,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
-        solution: 'I do not work'
+        solution: 'I don\'t work'
     },
     {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
@@ -21,7 +21,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
-        solution: 'You do not work'
+        solution: 'You don\'t work'
     },
     {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
@@ -37,7 +37,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
-        solution: 'He does not work'
+        solution: 'He doesn\'t work'
     },
     {
         task: new Task({ tense: tenses.presentSimple, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
@@ -70,7 +70,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
-        solution: 'You are not working'
+        solution: 'You aren\'t working'
     },
     {
         task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
@@ -82,7 +82,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
-        solution: 'He is not working'
+        solution: 'He isn\'t working'
     },
     {
         task: new Task({ tense: tenses.presetContinuous, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
@@ -99,7 +99,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
-        solution: 'I will not work'
+        solution: 'I won\'t work'
     },
     {
         task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
@@ -111,7 +111,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
-        solution: 'You will not work'
+        solution: 'You won\'t work'
     },
     {
         task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
@@ -123,7 +123,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
-        solution: 'He will not work'
+        solution: 'He won\'t work'
     },
     {
         task: new Task({ tense: tenses.futureSimple, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
@@ -136,7 +136,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.i, sign: signs.negative, verb: verbs.work }),
-        solution: 'I did not work'
+        solution: 'I didn\'t work'
     },
     {
         task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.i, sign: signs.question, verb: verbs.work }),
@@ -148,7 +148,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.you, sign: signs.negative, verb: verbs.work }),
-        solution: 'You did not work'
+        solution: 'You didn\'t work'
     },
     {
         task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.you, sign: signs.question, verb: verbs.work }),
@@ -160,7 +160,7 @@ const testCases = [
     },
     {
         task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.he, sign: signs.negative, verb: verbs.work }),
-        solution: 'He did not work'
+        solution: 'He didn\'t work'
     },
     {
         task: new Task({ tense: tenses.pastSimple, pronoun: pronouns.he, sign: signs.question, verb: verbs.work }),
